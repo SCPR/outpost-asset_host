@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'outpost/asset_host/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Outpost/AssetHost"
+  spec.name          = "outpost-asset_host"
   spec.version       = Outpost::AssetHost::VERSION
   spec.authors       = ["Bryan Ricker"]
   spec.email         = ["bricker88@gmail.com"]
