@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Bryan Ricker"]
   spec.email         = ["bricker88@gmail.com"]
   spec.description   = %q{AssetHost integration with Outpost.}
-  spec.summary       = %q{AssetHost integration with Outpost.}
+  spec.summary       = %q{Provides client-side hooks into AssetHost for Outpost.}
   spec.homepage      = "https://github.com/SCPR/outpost-asset_host"
   spec.license       = "MIT"
 
