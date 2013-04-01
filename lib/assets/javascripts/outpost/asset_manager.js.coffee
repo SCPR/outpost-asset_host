@@ -29,7 +29,7 @@ class outpost.AssetManager
         , false
 
     #----------
-        
+    
     updateInput: ->
         $(@options.jsonInput).val(JSON.stringify(@assets.simpleJSON()))
         
