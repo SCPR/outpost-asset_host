@@ -91,7 +91,10 @@ And include the javascript and stylesheet:
 
 ```
 //= require outpost/asset_host
-/* require outpost/assets
+
+/*
+*= require outpost/assets
+*/
 ```
 
 ## Contributing
