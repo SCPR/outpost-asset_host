@@ -3,6 +3,8 @@
 #
 # For Managing Assets
 class outpost.AssetManager
+    @TemplatePath = 'outpost/asset_host/templates'
+
     DefaultOptions:
         jsonInput: "#asset_json"
 
@@ -37,7 +39,7 @@ class outpost.AssetManager
     
     @Asset: Backbone.View.extend
         tagName: "li"
-        template: JST['outpost/templates/asset']
+        template: JST[outpost.AssetManager.TemplatePath + '/asset']
         
         #----------
         
@@ -113,7 +115,7 @@ class outpost.AssetManager
         #----------
         # Render the full view. This should only be called once.
         render: ->
-            @$el.html JST['outpost/templates/asset_manager']
+            @$el.html JST[outpost.AssetManager.TemplatePath + '/asset_manager']
             @collectionEl = $(".collection", @$el)
             @emptyNotification = new outpost.Notification(
                 @collectionEl, 
