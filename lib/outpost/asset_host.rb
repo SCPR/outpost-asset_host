@@ -1,4 +1,5 @@
 require "outpost/asset_host/version"
+require "outpost/asset_host/json_input"
 
 module Outpost
   module AssetHost
@@ -8,3 +9,5 @@ module Outpost
     end
   end
 end
+
+ActiveRecord::Base.send :include, Outpost::AssetHost::JsonInput
