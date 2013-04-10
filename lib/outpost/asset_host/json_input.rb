@@ -10,7 +10,7 @@ module Outpost
         end
 
         def assets_association_join_class
-          @assets_association_join_classå
+          @assets_association_join_class
         end
       end
 
