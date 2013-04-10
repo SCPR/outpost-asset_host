@@ -6,37 +6,11 @@ module Outpost
       module ClassMethods
         def accepts_json_input_for_assets
           include InstanceMethodsOnActivation
-          @assets_association_join_class = self.reflect_on_association(:assets).klass
-          
-          @assets_association_join_class.send :include, JoinModelMethodsOnActivation
+          @assets_association_join_class = self.reflect_on_association(:assets).class_name
         end
 
         def assets_association_join_class
-          @assets_association_join_class
-        end
-      end
-
-
-      module JoinModelMethodsOnActivation
-        def as_json(options={})
-          @as_json ||= begin
-            # grab asset as_json, merge in our values
-            self.asset.as_json(options).merge!({
-              "post_asset_id"   => self.id,
-              "caption"         => self.caption,
-              "ORDER"           => self.position,
-              "credit"          => self.asset.owner
-            })
-          end
-        end
-
-
-        def simple_json
-          @simple_json ||= {
-            "id"          => self.asset_id.to_i,
-            "caption"     => self.caption.to_s,
-            "position"    => self.position.to_i
-          }
+          @assets_association_join_classå
         end
       end
 
@@ -72,7 +46,7 @@ module Outpost
           loaded_assets = []
           
           json.each do |asset_hash|
-            new_asset = self.class.assets_association_join_class.new(
+            new_asset = self.class.assets_association_join_class.constantize.new(
               :asset_id    => asset_hash["id"].to_i, 
               :caption     => asset_hash["caption"].to_s, 
               :position    => asset_hash["position"].to_i

@@ -1,5 +1,6 @@
 require "outpost/asset_host/version"
 require "outpost/asset_host/json_input"
+require "outpost/asset_host/join_model_json"
 
 module Outpost
   module AssetHost
