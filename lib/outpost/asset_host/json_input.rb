@@ -19,7 +19,7 @@ module Outpost
         #-------------------
         # #asset_json is a way to pass in a string representation
         # of a javascript object to the model, which will then be
-        # parsed and turned into ContentAsset objects in the 
+        # parsed and turned into ContentAsset objects in the
         # #asset_json= method.
         def asset_json
           current_assets_json.to_json
@@ -27,9 +27,9 @@ module Outpost
 
         #-------------------
         # Parse the input from #asset_json and turn it into real
-        # ContentAsset objects. 
+        # ContentAsset objects.
         def asset_json=(json)
-          # If this is literally an empty string (as opposed to an 
+          # If this is literally an empty string (as opposed to an
           # empty JSON object, which is what it would be if there were no assets),
           # then we can assume something went wrong and just abort.
           # This shouldn't happen since we're populating the field in the template.
@@ -37,25 +37,25 @@ module Outpost
 
           json = Array(JSON.parse(json)).sort_by { |c| c["position"].to_i }
           loaded_assets = []
-          
+
           json.each do |asset_hash|
             new_asset = self.class.assets_association_join_class.constantize.new(
-              :asset_id    => asset_hash["id"].to_i, 
-              :caption     => asset_hash["caption"].to_s, 
+              :asset_id    => asset_hash["id"].to_i,
+              :caption     => asset_hash["caption"].to_s,
               :position    => asset_hash["position"].to_i
             )
-            
+
             loaded_assets.push new_asset
           end
-          
+
           loaded_assets_json = assets_to_simple_json(loaded_assets)
 
-          # If the assets didn't change, there's no need to bother the database.        
+          # If the assets didn't change, there's no need to bother the database.
           if current_assets_json != loaded_assets_json
             if self.respond_to?(:custom_changes)
               self.custom_changes['assets'] = [current_assets_json, loaded_assets_json]
             end
-            
+
             self.changed_attributes['assets'] = current_assets_json
             self.assets = loaded_assets
           end
