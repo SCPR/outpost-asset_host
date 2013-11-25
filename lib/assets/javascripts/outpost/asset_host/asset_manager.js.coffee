@@ -103,7 +103,7 @@ class outpost.AssetManager
             popup =
                 url:     "#{assethost.SERVER}/a/chooser"
                 name:    "chooser"
-                options: "height=620,width=1000,scrollbars=1"
+                options: "height=1000,width=1000,scrollbars=1"
 
             if @chooserIsAvailable()
                 window.assethostChooser.focus()
