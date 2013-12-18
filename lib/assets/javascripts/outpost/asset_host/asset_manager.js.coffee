@@ -23,7 +23,9 @@ class outpost.AssetManager
         # Register listener for AssetHost message
         window.addEventListener "message", (event) =>
             # If the data is an object (i.e. not "LOADED"), do things
-            if _.isObject(event.data)
+            # Also make sure the origin is from AssetHost, otherwise
+            # other messages could trigger this callback.
+            if event.origin == assethost.SERVER and _.isObject(event.data)
                 @assets.reset(event.data)
                 @assets.sort()
                 @assetsView.render()
@@ -81,7 +83,9 @@ class outpost.AssetManager
 
             # attach a listener to wait for the LOADED message
             window.addEventListener "message", (evt) =>
-                if evt.data == "LOADED" and @chooserIsAvailable()
+                if evt.origin == assethost.SERVER and
+                evt.data == "LOADED" and
+                @chooserIsAvailable()
                     console.log @collection.toJSON()
                     # dispatch our event with the asset data
                     window.assethostChooser.postMessage @collection.toJSON(), assethost.SERVER
