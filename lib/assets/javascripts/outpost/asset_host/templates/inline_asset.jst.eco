@@ -1,4 +1,4 @@
-<div class="thumbnail <%= @asset.use %>" data-asset-id="<%= @asset.id %>">
+<div class="thumbnail" data-asset-id="<%= @asset.id %>">
   <%- @asset.tags.lsquare %>
 
   <div class="asset-info">

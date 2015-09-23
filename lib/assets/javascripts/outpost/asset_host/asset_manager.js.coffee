@@ -14,7 +14,6 @@ class outpost.AssetManager
         _.extend @, Backbone.Events
         @options = _.defaults options, @DefaultOptions
         @el = $(el)
-
         @assets     = new outpost.AssetHost.Assets(assets)
         @assetsView = new outpost.AssetManager.Assets(collection: @assets)
 
@@ -42,6 +41,10 @@ class outpost.AssetManager
     @Asset: Backbone.View.extend
         tagName: "li"
         template: JST[AssetManager.TemplatePath + 'asset']
+        attributes: ->
+            "data-asset-id": @model.id
+            "draggable": true
+            "class": "asset"
 
         #----------
 
@@ -54,7 +57,6 @@ class outpost.AssetManager
         render: ->
             if @model.get('tags')
                 @$el.html @template(asset: @model.toJSON())
-
             @
 
     #----------
@@ -128,6 +130,7 @@ class outpost.AssetManager
             )
 
             @renderCollection()
+
             @
 
         #----------
