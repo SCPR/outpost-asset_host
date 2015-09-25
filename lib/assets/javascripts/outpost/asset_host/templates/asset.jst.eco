@@ -1,5 +1,5 @@
 <div class="thumbnail <%= @asset.use %>" data-asset-id="<%= @asset.id %>">
-  <%- @asset.tags.lsquare %>
+  <img src="<%= @asset.urls.lsquare %>" width="<%= @asset.sizes.lsquare.width %>" height="<%= @asset.sizes.lsquare.height %>" draggable="false" />
 
   <div class="asset-info">
     <h6><%= @asset.title %></h6>
