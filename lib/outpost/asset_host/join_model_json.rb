@@ -8,7 +8,8 @@ module Outpost
             "post_asset_id"   => self.id,
             "caption"         => self.caption,
             "ORDER"           => self.position,
-            "credit"          => self.asset.owner
+            "credit"          => self.asset.owner,
+            "use"             => self.use,
           })
         end
       end
@@ -18,7 +19,8 @@ module Outpost
         @simple_json ||= {
           "id"          => self.asset_id.to_i,
           "caption"     => self.caption.to_s,
-          "position"    => self.position.to_i
+          "position"    => self.position.to_i,
+          "use"         => self.use.to_s
         }
       end
     end

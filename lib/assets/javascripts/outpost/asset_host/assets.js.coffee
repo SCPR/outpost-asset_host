@@ -17,6 +17,7 @@ class outpost.AssetHost
                 id:          @get 'id'
                 caption:     @get 'caption'
                 position:    @get 'ORDER'
+                inline:      @get 'inline'
             }
 
         #--------------
